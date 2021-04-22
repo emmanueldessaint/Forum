@@ -1,21 +1,32 @@
 <template>
-    <body>
-        <div class="test">HIhhhlblbjjhkjnjn
+    <div>
+        <div @click.prevent="lafonction" type="submit" class="test">HIhhhlblbjjhkjnjn
         </div>
-    </body>
+    </div>
 </template>
 <script>
-
+// import axios from 'axios';
+// import router from '../router/index.js'
 
 export default {
     name:"Afficherdiscussions",
-    // methods: {
-
-    // }
+    methods: {
+        lafonction() {
+            // axios.get('http://localhost:3000/api/auth/getOne')
+            // .then((response) => {
+            //     console.log(response);
+            //     console.log("test")
+            // }, (error) => {
+            //     console.log(error);
+            // });   
+            console.log('test')
+        },
+    }
 }
 </script>
 <style>
 .test{
-    font-size:2000px;
+    font-size:20px;
+    margin-top:200px;
 }
 </style>

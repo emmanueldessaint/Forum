@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const userRoutes = require ('./routes/user')
+const sujetRoutes = require ('./routes/sujet')
 
 const app = express()
 // First you need to create a connection to the database
@@ -34,6 +35,8 @@ app.use((req, res, next) => {
 app.use(bodyParser.json())
 
 app.use('/api/auth', userRoutes)
+app.use('/api/auth', sujetRoutes)
+
 module.exports = app
 
 

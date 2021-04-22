@@ -52,7 +52,11 @@ exports.login = (req, res,) => {
           return res.status(401).json({ error: 'Mot de passe incorrect !' }); // afficher message d'erreur mdp incorrect
         }
 
-        // var getPseudo = `SELECT pseudo FROM users WHERE mail = '${req.body.username}'`;
+        var getPseudo = `SELECT pseudo FROM users WHERE mail = '${req.body.username}'`;
+        con.query(getPseudo, function (err, resultpseudo) {
+          console.log(resultpseudo[0].pseudo)
+          // return res.status(201).json({  })
+        }) 
         var identifiant = `SELECT id FROM users WHERE mail = '${req.body.username}'`;
         con.query(identifiant, function (err, resultid) {
         var useridtoken = resultid[0].id
