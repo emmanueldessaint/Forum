@@ -4,6 +4,7 @@ import Connect from '../views/Connect.vue'
 import Signup from '../views/Signup.vue'
 import CreerDiscussion from '../views/CreerDiscussion.vue'
 import Accueil from '../views/Accueil.vue'
+import Sujet from '../views/Sujet.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/Accueil',
     name: 'Accueil',
     component: Accueil
+  },
+  {
+    path: '/Sujet/:id', 
+    name: 'Sujet',
+    component: Sujet
   }
 ]
 

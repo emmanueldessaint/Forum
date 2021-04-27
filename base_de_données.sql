@@ -12,19 +12,23 @@ CREATE TABLE users (
 ENGINE=INNODB;
 
 
-
-
 SET NAMES utf8;
 
 DROP TABLE IF EXISTS sujets;
 
 CREATE TABLE sujets (
     id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    pseudo VARCHAR(40) NOT NULL,
-    titre VARCHAR(70) NOT NULL,
-    message VARCHAR(30) NOT NULL,
-    dt DATETIME,
+    pseudo VARCHAR(30) NOT NULL,
+    titre VARCHAR(80) NOT NULL,
+    message VARCHAR(3000) NOT NULL,
+    ArrivalDate datetime,
     PRIMARY KEY (id)
 )
+
 ENGINE=INNODB;
+
+INSERT INTO sujets (pseudo, titre, message, ArrivalDate) 
+VALUES ('szartek', 'un titre exemple', 'unmessage demo ...', now()),
+       ('rexar', 'un titre exemple', 'unmessage demo ...', now()),
+       ('magmadar', 'un titre exemple', 'unmessage demo ...', now());
 

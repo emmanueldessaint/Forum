@@ -38,14 +38,17 @@ export default {
                  if (response.status === 201) {
                      router.push("/CreerDiscussion")
                 }
-                localStorage.clear()
-                localStorage.setItem('Pseudo', this.pseudo)
-                    
+                // if (response.status === 201) {
+                //     router.push("/Accueil")
+                // }
             }, (error) => {
                 console.log(error);     
             });
         },
-        
+        Pseudolocal() {
+            localStorage.clear()
+            localStorage.setItem('Pseudo', this.pseudo)
+        }
         // fonctionTest() {
         //     var search = document.getElementsById('boutonConnect')
         //     search.addEventListener("click",envoyerDonnées())

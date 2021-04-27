@@ -9,23 +9,18 @@ const con = mysql.createConnection({
 });
 
 exports.create = (req, res,) => {
-  var sql = `INSERT INTO sujets (pseudo, titre, message, dt) VALUES 
-  ('pseudo', '${req.body.titre}', '${req.body.message}', now())`;
-  con.query(sql, function(err, result) {
+  var sql = `INSERT INTO sujets (pseudo, titre, message, ArrivalDate) VALUES ('pseudo', '${req.body.title}', '${req.body.message}', now())`
+  con.query(sql, function (err, result) {
     if (err) console.log(err)
-    else {
-      console.log("test")
-      console.log(result)
-    }
+    console.log("message posté !")
+    res.status(201).json({message : 'Utilisateur crée avec succès !'})  // il faut afficher la page d'accueil
   })
 }
-
-exports.getOne = (req, res ) => {
-  var sql = `SELECT * FROM sujets`;
-  con.query = (sql, function (err, result) {
+exports.getOne = (req, res,) => {
+  var sql = `SELECT * FROM sujets;`
+  con.query(sql, function (err, result) {
     if (err) console.log(err)
     console.log(result)
-    console.log("réponse du serveur")
-    res.status(201).json({message : 'réponse serveur !'}) 
+    res.status(201).json({result})
   })
 }

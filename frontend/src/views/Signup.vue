@@ -13,7 +13,7 @@ import Creercompte from '@/components/Creercompte.vue'
 
 
 export default {
-  name: 'Connect',
+  name: 'Signup',
   components: {
     Header,
     Creercompte,

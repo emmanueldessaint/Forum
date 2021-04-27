@@ -54,22 +54,23 @@ exports.login = (req, res,) => {
 
         var getPseudo = `SELECT pseudo FROM users WHERE mail = '${req.body.username}'`;
         con.query(getPseudo, function (err, resultpseudo) {
-          console.log(resultpseudo[0].pseudo)
-          // return res.status(201).json({  })
-        }) 
-        var identifiant = `SELECT id FROM users WHERE mail = '${req.body.username}'`;
-        con.query(identifiant, function (err, resultid) {
-        var useridtoken = resultid[0].id
-        console.log("connexion réuissie")
-          res.status(200).json({         // afficher la page d'accueil
-            userId: useridtoken,
-            token: jwt.sign(
-              { userId: useridtoken },
-              'RANDOM_TOKEN_SECRET',
-              { expiresIn: '24h' }
-            )
+          if (err) console.log(err)
+          console.log(resultpseudo)
+        
+          var identifiant = `SELECT id FROM users WHERE mail = '${req.body.username}'`;
+          con.query(identifiant, function (err, resultid) {
+          var useridtoken = resultid[0].id
+          console.log("connexion réuissie")
+            res.status(200).json({         // afficher la page d'accueil
+              userId: useridtoken,
+              token: jwt.sign(
+                { userId: useridtoken },
+                'RANDOM_TOKEN_SECRET',
+                { expiresIn: '24h' }
+              )
+            })
           })
-        })
+        }) 
       })
       .catch(error => res.status(500).json({ error }));
     }) 
