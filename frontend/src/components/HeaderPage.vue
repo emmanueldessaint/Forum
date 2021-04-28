@@ -3,7 +3,7 @@
         <header>
             <div class="top-background">   
                 <div class="menu">
-                    <div class="nomPrenom">Groupomania</div>
+                    <div class="marque" style="font-family:'Courier New'">Powerfull bikes</div>
                     <div class="menuDeroulant">
                         <!-- <div class="menuprojets">Groupomania</div> -->
                         <!-- <div class="headerPageprincipale"><router-link class="routerLink" to="/Accueil">Page principale</router-link></div> -->
@@ -23,6 +23,7 @@ export default {
 </script>
 
 <style>
+
 .routerLink{
     text-decoration: none;
     color: rgb(206, 197, 197);
@@ -43,7 +44,8 @@ export default {
     width: 100%;
     color:rgb(206, 197, 197);
 }
-.nomPrenom{
+.marque{
+    font-family: 'AlexBrush';
     display:flex;
     align-content: center;
     font-size:2em;

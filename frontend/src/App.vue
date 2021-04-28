@@ -15,6 +15,11 @@
   text-align: center;
   color: #2c3e50;
 }
+// @font-face{
+//     font-family: 'AlexBrush';
+//     src: local('AlexBrush'),
+//     url(./polices/AlexBrush-Regular.ttf)
+// }
 
 #nav {
   padding: 30px;

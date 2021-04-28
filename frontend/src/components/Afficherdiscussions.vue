@@ -1,6 +1,8 @@
 <template>
-  <body>
-    
+  <div class="global">
+    <div>
+      <div class="creer"><router-link class="routercreer" to="/CreerDiscussion">Créer un nouveau sujet</router-link></div>
+    </div>
     <div class="test" v-for="item in donnee[0]" :key="item.pseudo">
       <div class="width">
           <div>{{item.titre}}</div>
@@ -13,11 +15,11 @@
       </div>
       
       <div class="date">
-        
+        {{item.ArrivalDate}}
       </div>
 
     </div>
-  </body>
+  </div>
 </template>
 <script>
 import axios from "axios";
@@ -31,19 +33,12 @@ export default {
          
       }
   },
-  methods: {
-    call() {
-      localStorage.setItem('pseudo', this.donnee[0])
-      console.log(this.donnee[0])
-    }
   
-  },
   mounted() {
     axios.get("http://localhost:3000/api/auth/getOne").then(
       (response) => {
-        
-            // console.log(response.data.result[i])
         this.donnee.push(response.data.result)
+        console.log(response.data.result)
       },
       (error) => {
         console.log(error);
@@ -53,13 +48,22 @@ export default {
 };
 </script>
 <style>
-body{
-    margin-top: 200px;
+.global{
+  margin-top:150px;
+}
+.creer{
+  font-size:1.5em;
+  margin-bottom:3em;
+  
+}
+.routercreer{
+  text-decoration: none;
 }
 .width{
   width:300px;
 }
 .test{
+  
   display:flex;
   justify-content: space-around;
   margin:1em;
