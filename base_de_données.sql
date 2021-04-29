@@ -32,3 +32,6 @@ VALUES ('szartek', 'un titre exemple', 'unmessage demo ...', now()),
        ('rexar', 'un titre exemple', 'unmessage demo ...', now()),
        ('magmadar', 'un titre exemple', 'unmessage demo ...', now());
 
+
+
+

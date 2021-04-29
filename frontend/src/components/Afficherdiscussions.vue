@@ -35,7 +35,7 @@ export default {
   },
   
   mounted() {
-    axios.get("http://localhost:3000/api/auth/getOne").then(
+    axios.get("http://localhost:3000/api/auth/getAllSujets").then(
       (response) => {
         this.donnee.push(response.data.result)
         console.log(response.data.result)

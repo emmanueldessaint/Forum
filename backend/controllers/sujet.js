@@ -16,9 +16,17 @@ exports.create = (req, res,) => {
     res.status(201).json({message : 'Utilisateur crée avec succès !'})  // il faut afficher la page d'accueil
   })
 }
-exports.getOne = (req, res,) => {
+exports.getAllSujets = (req, res,) => {
   var sql = `SELECT * FROM sujets;`
   con.query(sql, function (err, result) {
+    if (err) console.log(err)
+    console.log(result)
+    res.status(201).json({result})
+  })
+}
+exports.getOneSujet = (req, res,) => {
+  var sql = `SELECT * FROM sujets WHERE id = '${req.body.id}';`
+  con.query(sql, function(err, result) {
     if (err) console.log(err)
     console.log(result)
     res.status(201).json({result})
