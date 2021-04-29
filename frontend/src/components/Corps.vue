@@ -8,8 +8,6 @@
 
                 <textarea rows="10" cols="110" class="champCorps" v-model="message" placeholder="Ecrivez votre message ici..."></textarea><br><br>
                 <button class="boutonEnvoyer" @click.prevent="envoyerDonnées()" @click="$router.push('/Accueil')">Envoyer</button>
-                <!-- <button onclick="myFunction()">Click me</button>
-                <p id="demo">demo</p> -->
             </form>
         </div>
     </body>
@@ -18,27 +16,27 @@
 // import axios from 'axios';
 // import router from '../router/index.js';
 import axios from 'axios';
-// import router from '../router/index.js';
+import router from '../router/index.js';
 
 export default {
     name: "Corps",
     methods: {
         envoyerDonnées() {
-            axios.post('http://localhost:3000/api/auth/create', {
+            axios.post('http://localhost:3000/api/auth/createSujet', {
                 title:(this.title),
                 message:(this.message),
                 pseudo:("pseudo"),
                 
             })
-            // .then((response) => {
+            .then((response) => {
                 
-            //     }
-            //     // if (response.status === 201) {
-            //     //     router.push("/Accueil")
-            //     // }
-            // }, (error) => {
-            //     console.log(error);     
-            // });
+                
+                if (response.status === 201) {
+                    router.push("/Accueil")
+                }
+            }, (error) => {
+                console.log(error);     
+            });
         }
     }
 }

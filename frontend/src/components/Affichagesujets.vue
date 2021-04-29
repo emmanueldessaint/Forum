@@ -1,22 +1,42 @@
 <template>
     <div class="container">
         <div class="sujet">
-            <div class="titre">
-            {{donnee[0].titre}}
+            <div class="titre-repondre">
+                <div class="titre">
+                {{donnee[0].titre}}
+                </div>
+                <div class="repondre">
+                    <div @click="update">Poster un message</div>
+                </div>
+
             </div>
-            <div class="contenu">
-                <div class="contenu-pseudo">
-                    {{donnee[0].pseudo}}
+
+            <div class="contenu contenu-boucle" v-for="item in donnee" :key="item.id">
+                <div class="contenu-pseudo-date">
+                    <div class="contenu-pseudo">
+                        {{item.pseudo}}
+                    </div>
+                    <div class="contenu-date">
+                        {{item.ArrivalDate}}
+                    </div>
                 </div>
                 <p class="contenu-message">
-                    {{donnee[0].message}}
+                    {{item.message}}
                 </p> 
             </div>
+            <div v-if="poster">
+                <div class="menu-poster">
+                    <form>
+
+                        <textarea  class="champCorps textareamessage" v-model="message" placeholder="Ecrivez votre message ici..."></textarea><br><br>
+                        <button class="boutonEnvoyer" @click.prevent="envoyerDonnées()" @click="$router.push('/Accueil')">Envoyer</button>
+                    </form>
+                </div>
+                
+            </div>
+
         </div>
         
-        <div class="sujet" v-for="item in donnee" :key="item.pseudo">
-        
-        </div>
     </div>
 </template>
 <script>
@@ -32,7 +52,8 @@ export default {
     data() {
            return {
               id: this.$route.params.id, //this is the id from the browser  
-              donnee: []   
+              donnee: [],
+              poster: false
            }
            
        },
@@ -57,6 +78,11 @@ export default {
                 console.log(error);
             });
         },
+        update() {
+            this.poster =! this.poster
+        }
+
+        
     }
 }
 </script>
@@ -65,37 +91,62 @@ export default {
     margin-top:150px;
     
 }
-.titre{
-    
-    
+.titre-repondre{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}
+.titre{  
     font-size:2em;
-    margin-right: auto;
-    margin-left: auto;
-
- 
+    margin-left:1.6em;
+    /* background:red; */
+    max-width:600px;
+    
+}
+.repondre{
+    font-size:1.7em;
+    padding-right:2em;
 }
 .contenu{
     border:1px solid rgb(182, 182, 182);
     margin: 10px 50px 10px 50px;
     min-height:5em;
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
     min-height:4em;
     background:rgb(233, 233, 233)
+    
+    
+}
+.contenu-pseudo-date{
+    display:flex;
+    justify-content:space-between;
+    
 }
 .contenu-pseudo{
-    width:50em;
-    padding-top:8px;
-    font-size:1.3em;
-    border-right: solid 1px rgb(182, 182, 182);
-    background:rgb(233, 233, 233)
+   font-size:1.8em;
+   padding:15px 15px 15px 38px;
+   
+}
+
+.contenu-date{
+   font-size:1.4em;
+   padding:18px 30px 15px 15px;
 }
 
 .contenu-message{
     text-align: justify;
     line-height: 1.5em;
-    padding:8px;
+    padding:5px 30px 5px 30px;
+    margin-left:10px;
+    margin-right:10px;
     /* margin-left:10px; */
     font-size:1.3em;
+}
+.textareamessage{
+    margin: 10px 50px 10px 50px;
+    width:92%;
+    min-height:5em;
 }
 </style>

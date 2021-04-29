@@ -3,8 +3,9 @@ const router = express.Router();
 
 const userCtrl = require('../controllers/sujet');
 
-router.post('/create', userCtrl.create);
+router.post('/createSujet', userCtrl.createSujet);
 router.get('/getAllSujets', userCtrl.getAllSujets);
 router.post('/getOneSujet', userCtrl.getOneSujet);
+router.post('/createMessage', userCtrl.createMessage);
 
 module.exports = router;

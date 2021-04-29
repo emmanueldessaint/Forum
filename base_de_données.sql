@@ -20,17 +20,37 @@ CREATE TABLE sujets (
     id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     pseudo VARCHAR(30) NOT NULL,
     titre VARCHAR(80) NOT NULL,
+    ArrivalDate datetime,
+    PRIMARY KEY (id)
+);
+
+
+INSERT INTO sujets (pseudo, titre, ArrivalDate) 
+VALUES ('szartek', 'Quel vélo pour débuter ?', now()),
+       ('rexar', 'Installer un kit bafang', now()),
+       ('magmadar', 'un titre exemple', now());
+
+SET NAMES utf8;
+
+DROP TABLE IF EXISTS messages;
+
+CREATE TABLE messages (
+    id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    idSujet SMALLINT NOT NULL,
+    pseudo VARCHAR(30) NOT NULL,
+    titre VARCHAR(80),
     message VARCHAR(3000) NOT NULL,
     ArrivalDate datetime,
     PRIMARY KEY (id)
-)
+);
+
+INSERT INTO messages (pseudo, message, ArrivalDate) 
+VALUES ('szartek', 'Personnellement, pour le premier vélo, je ne pense pas qu’il soit nécessaire d’investir dans une machine de guerre haut de gamme. Déjà parce que les vélos de compétitions sont très raides et inconfortables pour ce genre d’usage (la sensation d’avoir un bout de bois sous les fesses…) et donc que cela risque de vous dégoûter plus qu’autre chose. Pour les cyclistes qui cherchent un vélo pas cher et solide, les Triban RC100 ou RC120 à disques de Décathlon, par exemple, conviendront parfaitement pour faire du vélotaf (aller au travail en vélo) ou découvrir le cyclisme sur route.', now()),
+       ('rexar','Linstallation dun kit moteur pédalier BAFANG BBS01, BBS02 et BSSHD est relativement simple et intuitive. Ils sont compatibles sur quasiment lensemble des vélos existants. Notre boutique propose différentes autonomies et puissances de moteur pour une utilisation balade, randonnée ou VTT. Les batteries fournies avec nos moteurs sinstallent à la place du porte bidon de votre vélo. Ci dessous lensemble des instructions pour le montage du moteur et de la batterie fournie.',now()),
+       ('magmadar','c"est des boeufs', now());
 
 ENGINE=INNODB;
 
-INSERT INTO sujets (pseudo, titre, message, ArrivalDate) 
-VALUES ('szartek', 'un titre exemple', 'unmessage demo ...', now()),
-       ('rexar', 'un titre exemple', 'unmessage demo ...', now()),
-       ('magmadar', 'un titre exemple', 'unmessage demo ...', now());
 
 
 
