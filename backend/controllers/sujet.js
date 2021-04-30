@@ -12,7 +12,8 @@ exports.createSujet = (req, res,) => {
   var sqlSujet = `INSERT INTO sujets (pseudo, titre, ArrivalDate) VALUES ('pseudo', '${req.body.title}', now())`
   con.query(sqlSujet, function (err, result) {
     if (err) console.log(err)
-    var sqlMessage = `INSERT INTO messages (pseudo, message, ArrivalDate) VALUES ('pseudo', '${req.body.message}', now())`
+    console.log(result)
+    var sqlMessage = `INSERT INTO messages (idSujet, pseudo, message, ArrivalDate) VALUES ('idSujet', 'pseudo', '${req.body.message}', now())`
     con.query(sqlMessage, function (err, result) {
       if (err) console.log(err)
       console.log("message posté !")
@@ -37,7 +38,15 @@ exports.getOneSujet = (req, res,) => {
   })
 }
 exports.createMessage = (req, res,) => {
-  var sql = `INSERT INTO messages (pseudo, message, ArrivalDate) VALUES ('pseudo', '${req.body.message}', now())`
+  var sql = `INSERT INTO messages (idSujet, pseudo, message, ArrivalDate) VALUES ('${req.body.id}', 'pseudo', '${req.body.message}', now())`
+  con.query(sql, function(err, result) {
+    if (err) console.log(err)
+    console.log(result)
+    res.status(201).json({result})
+  })
+}
+exports.getAllMessages = (req,res) => {
+  var sql = `SELECT * FROM messages WHERE idSujet = '${req.body.id}';`
   con.query(sql, function(err, result) {
     if (err) console.log(err)
     console.log(result)

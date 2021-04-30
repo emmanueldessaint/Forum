@@ -1,0 +1,3 @@
+Formater DateTime
+Doit être connecté pour accéder à certaines pages
+pseudo automatique

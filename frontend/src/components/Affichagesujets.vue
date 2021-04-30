@@ -11,7 +11,20 @@
 
             </div>
 
-            <div class="contenu contenu-boucle" v-for="item in donnee" :key="item.id">
+            <!-- <div class="contenu contenu-boucle" v-for="item in donnee" :key="item.id">
+                <div class="contenu-pseudo-date">
+                    <div class="contenu-pseudo">
+                        {{item.pseudo}}
+                    </div>
+                    <div class="contenu-date">
+                        {{item.ArrivalDate}}
+                    </div>
+                </div>
+                <p class="contenu-message">
+                    {{item.message}}
+                </p> 
+            </div> -->
+            <div class="contenu contenu-boucle" v-for="item in donneeMessage[0]" :key="item.idSujet">
                 <div class="contenu-pseudo-date">
                     <div class="contenu-pseudo">
                         {{item.pseudo}}
@@ -29,7 +42,7 @@
                     <form>
 
                         <textarea  class="champCorps textareamessage" v-model="message" placeholder="Ecrivez votre message ici..."></textarea><br><br>
-                        <button class="boutonEnvoyer" @click.prevent="envoyerDonnées()" @click="$router.push('/Accueil')">Envoyer</button>
+                        <button class="boutonEnvoyer" @click="envoyerDonnées()">Envoyer</button>
                     </form>
                 </div>
                 
@@ -53,6 +66,7 @@ export default {
            return {
               id: this.$route.params.id, //this is the id from the browser  
               donnee: [],
+              donneeMessage: [],
               poster: false
            }
            
@@ -62,10 +76,11 @@ export default {
           component: Sujet }//where :id is the dynamic id you wish to access from the browser
     ],
     mounted() {
-        this.envoyerDonnées()
+        this.récupérerDonnées()
+        this.récupérerMessages()
     },
     methods: {
-        envoyerDonnées() {
+        récupérerDonnées() {
             axios.post('http://localhost:3000/api/auth/getOneSujet', {
                 id:(this.$route.params.id), 
             })
@@ -78,8 +93,32 @@ export default {
                 console.log(error);
             });
         },
+        récupérerMessages() {
+            axios.post('http://localhost:3000/api/auth/getAllMessages', {
+                id:(this.$route.params.id), 
+            })
+            .then((response) => {
+                this.donneeMessage.push(response.data.result)
+                console.log(response.data.result)
+            }, (error) => {
+                console.log(error);
+            });
+        },
         update() {
             this.poster =! this.poster
+        },
+        envoyerDonnées() {
+            axios.post('http://localhost:3000/api/auth/createMessage', {
+                id:(this.$route.params.id), 
+                message:(this.message), 
+            })
+            .then((response) => {
+            
+               console.log(response)
+              
+            }, (error) => {
+                console.log(error);
+            });
         }
 
         
