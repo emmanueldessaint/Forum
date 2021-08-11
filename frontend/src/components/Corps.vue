@@ -1,9 +1,9 @@
 <template>
     <body class="main">
-        <h2>Créer une discussion</h2>
+        <h2><router-link class="textTitre" to="/Accueil">Retour aux sujets</router-link></h2>
         <div class="discussions">
             <form>
-                <label for ="titreSujet" class="textTitre">Titre du sujet</label><br>
+                <label for ="titreSujet" class="textTitre mt-2">Titre du sujet</label><br>
                 <textarea rows="1" cols="50" class="champTitre" v-model="title"></textarea><br><br>
 
                 <textarea rows="10" cols="110" class="champCorps" v-model="message" placeholder="Ecrivez votre message ici..."></textarea><br><br>
@@ -20,17 +20,22 @@ import router from '../router/index.js';
 
 export default {
     name: "Corps",
+    data() {
+    return {
+      pseudo: localStorage.getItem("Pseudo"),
+    };
+  },
     methods: {
         envoyerDonnées() {
             axios.post('http://localhost:3000/api/auth/createSujet', {
                 title:(this.title),
                 message:(this.message),
-                pseudo:("pseudo"),
+                pseudo:(this.pseudo),
                 
             })
             .then((response) => {
                 
-                
+                console.log(response)
                 if (response.status === 201) {
                     router.push("/Accueil")
                 }
@@ -48,15 +53,19 @@ export default {
 }
 h2{
     text-align:left;
-    margin-left: 2em;
+    margin-left: 10%;
 }
 .discussions{
     display:flex;
     justify-content: center;
-    height:40em;
-    
+    /* height:40em; */
+    padding-bottom:20px;
+    padding-top:20px;
+    border-radius:10px;
     background:rgb(167, 165, 165);
-    /* padding:20px 10px 10px 20px; */
+    width:80%;
+    margin:auto;
+   
     
     
 }
@@ -67,16 +76,17 @@ h2{
 }
 .textTitre{
     font-size:25px;
-    color:rgb(34, 34, 34);
+    color:rgb(55, 51, 70);
+    text-decoration: none;
     /* padding-top:20px; */
 }
 .champCorps{
-    font-size:20px;
+    width:50vw;
     color:rgb(34, 34, 34);
     border-radius: 5px;
 }
 .champTitre{
-    font-size:20px;
+    width:30vw;
     color:rgb(34, 34, 34);
     margin-top:10px;
     border-radius: 5px;
@@ -93,5 +103,8 @@ h2{
 .router-link{
     color:red;
     background:red;
+}
+.mt-2{
+    padding-top:15px;
 }
 </style>

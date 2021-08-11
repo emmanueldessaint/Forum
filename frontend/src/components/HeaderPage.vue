@@ -6,7 +6,7 @@
                     <div class="marque" style="font-family:'Courier New'">Powerfull bikes</div>
                     <div class="menuDeroulant">
                         <!-- <div class="menuprojets">Groupomania</div> -->
-                        <!-- <div class="headerPageprincipale"><router-link class="routerLink" to="/Accueil">Page principale</router-link></div> -->
+                        <div class="headerPageprincipale"><router-link class="routerLink routerlinkaccueil" to="/Accueil">Accueil</router-link></div>
                         <div class="headerConnect"><router-link class="routerLink" to="/CreerDiscussion">Créer une discussion</router-link></div>
                         <div class="headerSignup"><router-link class="routerLink" to="/Signup">Se déconnecter</router-link></div>
                     </div>
@@ -18,7 +18,14 @@
 
 <script>
 export default {
-    name:"HeaderPage"
+    name:"HeaderPage",
+    // methods: {
+    //     getPseudo() {
+    //          axios.get("http://localhost:3000/api/auth/getAllMessages", {        
+    //             pseudo: this.$route.params.id,
+    //         })
+    //     }
+    // }
 }
 </script>
 
@@ -75,5 +82,9 @@ export default {
     padding-bottom:5em;
     font-size:1.5rem;
     text-align: center;
+}
+.routerlinkaccueil{
+    margin-right:2em;
+    font-size:1.1em;
 }
 </style>

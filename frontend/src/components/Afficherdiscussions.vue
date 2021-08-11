@@ -3,6 +3,11 @@
     <div>
       <div class="creer"><router-link class="routercreer" to="/CreerDiscussion">Créer un nouveau sujet</router-link></div>
     </div>
+    <div class="test mb-5">
+      <div class="width">Titre</div>
+      <div class="participation">Messages posté(s)</div>
+      <div>Date de création</div>
+    </div>
     <div class="test" v-for="item in donnee[0]" :key="item.pseudo">
       <div class="width">
           <div>{{item.titre}}</div>
@@ -11,11 +16,16 @@
       </div>
 
       <div class="participation">
-        0
+        
+        {{item.nbMessages}}
+
       </div>
       
       <div class="date">
-        {{item.ArrivalDate}}
+        
+        {{item.ArrivalDate | dateFormat}}
+        
+        
       </div>
 
     </div>
@@ -44,23 +54,46 @@ export default {
         console.log(error);
       }
     );
+    axios
+        .post("http://localhost:3000/api/auth/countMessages", {
+          id: this.item.id,
+        })
+        .then(
+          (response) => {
+            console.log(response)
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
   },
 };
 </script>
 <style>
 .global{
   margin-top:150px;
+  background: rgb(233, 233, 233);
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+  padding-top:20px;
+  padding-bottom:20px;
+  border-radius:10px;
 }
+
 .creer{
   font-size:1.5em;
   margin-bottom:3em;
-  
+  margin-left:145px;
 }
 .routercreer{
   text-decoration: none;
 }
 .width{
   width:300px;
+}
+.participation{
+  width:200px;
 }
 .test{
   
@@ -69,6 +102,9 @@ export default {
   margin:1em;
   font-size:1.2em;
 
+}
+.mb-5{
+  margin-bottom:40px;
 }
 .titre{
   display:flex;

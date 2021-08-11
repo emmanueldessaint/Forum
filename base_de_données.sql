@@ -24,14 +24,15 @@ CREATE TABLE sujets (
     pseudo VARCHAR(30) NOT NULL,
     titre VARCHAR(80) NOT NULL,
     ArrivalDate datetime,
+    nbMessages VARCHAR(999) NOT NULL,
     PRIMARY KEY (id)
 );
 
 
-INSERT INTO sujets (pseudo, titre, ArrivalDate) 
-VALUES ('szartek', 'Quel vélo pour débuter ?', now()),
-       ('rexar', 'Installer un kit bafang', now()),
-       ('magmadar', 'un titre exemple', now());
+INSERT INTO sujets (pseudo, titre, ArrivalDate, nbMessages) 
+VALUES ('szartek', 'Quel vélo pour débuter ?', now(), '2'),
+       ('rexar', 'Installer un kit bafang', now(), '1'),
+       ('magmadar', 'un titre exemple', now(), '1');
 
 
 
@@ -56,6 +57,10 @@ VALUES ('1', 'szartek', 'Personnellement, pour le premier vélo, je ne pense pas
 
 ENGINE=INNODB;
 
+
+UPDATE sujets
+SET nbMessages= (nbMessages +1)
+WHERE id="1";
 
 
 

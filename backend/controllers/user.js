@@ -32,6 +32,7 @@ exports.signup = (req, res,) => {
       })
     })
   }) 
+  // var thisUser = '{req.body.username}'
 }
 exports.login = (req, res,) => {
   var gopassword = `SELECT password FROM users WHERE mail = '${req.body.username}'`;
@@ -52,10 +53,8 @@ exports.login = (req, res,) => {
           return res.status(401).json({ error: 'Mot de passe incorrect !' }); // afficher message d'erreur mdp incorrect
         }
 
-        var getPseudo = `SELECT pseudo FROM users WHERE mail = '${req.body.username}'`;
-        con.query(getPseudo, function (err, resultpseudo) {
-          if (err) console.log(err)
-          console.log(resultpseudo)
+        
+          
         
           var identifiant = `SELECT id FROM users WHERE mail = '${req.body.username}'`;
           con.query(identifiant, function (err, resultid) {
@@ -70,9 +69,16 @@ exports.login = (req, res,) => {
               )
             })
           })
-        }) 
+         
       })
       .catch(error => res.status(500).json({ error }));
     }) 
   })
+}
+exports.getPseudo = (req, res,) => {
+  var getPseudo = `SELECT pseudo FROM users WHERE mail = '${req.body.username}'`;
+    con.query(getPseudo, function (err, result) {
+      if (err) console.log(err)
+      res.status(201).json({result})
+    })
 }

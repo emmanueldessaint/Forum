@@ -3,10 +3,10 @@
         <header>
             <div class="top-background">   
                 <div class="menu">
-                    <div class="nomPrenom">Groupomania</div>
+                    <div class="nomPrenom" style="font-family:'Courier New'">Powerfull bikes</div>
                     <div class="menuDeroulant">
                         <!-- <div class="menuprojets">Groupomania</div> -->
-                        <div class="headerPageprincipale"><router-link class="routerLink" to="/Accueil">Page principale</router-link></div>
+                        
                         <div class="headerConnect"><router-link class="routerLink" to="/">Se connecter</router-link></div>
                         <div class="headerSignup"><router-link class="routerLink" to="/Signup">Créer un compte</router-link></div>
                     </div>

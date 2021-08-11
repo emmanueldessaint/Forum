@@ -8,5 +8,6 @@ router.get('/getAllSujets', userCtrl.getAllSujets);
 router.post('/getOneSujet', userCtrl.getOneSujet);
 router.post('/createMessage', userCtrl.createMessage);
 router.post('/getAllMessages', userCtrl.getAllMessages);
+router.post('/countMessages', userCtrl.countMessages);
 
 module.exports = router;

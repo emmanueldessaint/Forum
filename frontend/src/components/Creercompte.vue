@@ -36,19 +36,18 @@ export default {
             .then((response) => {
                 console.log(response.data.message);
                  if (response.status === 201) {
-                     router.push("/CreerDiscussion")
+                     router.push("/Accueil")
                 }
-                // if (response.status === 201) {
-                //     router.push("/Accueil")
-                // }
+                localStorage.clear()
+                localStorage.setItem('Pseudo', this.pseudo)
+                
             }, (error) => {
                 console.log(error);     
             });
         },
-        Pseudolocal() {
-            localStorage.clear()
-            localStorage.setItem('Pseudo', this.pseudo)
-        }
+        
+            
+        
         // fonctionTest() {
         //     var search = document.getElementsById('boutonConnect')
         //     search.addEventListener("click",envoyerDonnées())

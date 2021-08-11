@@ -24,6 +24,19 @@ export default {
     name: "Connexion",
     methods: {
         envoyerDonnées() {
+            axios.post('http://localhost:3000/api/auth/getPseudo', {
+                username:(this.username),
+            })
+            .then((response) => {
+                console.log(response.data.result[0].pseudo)  
+                 
+            localStorage.clear()
+            localStorage.setItem('Pseudo', response.data.result[0].pseudo)
+        
+            }, (error) => {
+                console.log(error);
+            });
+
             axios.post('http://localhost:3000/api/auth/login', {
                 username:(this.username),
                 password:(this.password)
@@ -31,12 +44,15 @@ export default {
             .then((response) => {
                 console.log(response);
                 if (response.status === 200) {
+
                     console.log("authentification réussie")
-                    router.push("/CreerDiscussion")
+                    router.push("/Accueil")
                 }
             }, (error) => {
                 console.log(error);
             });
+
+            
             
         },
     },
